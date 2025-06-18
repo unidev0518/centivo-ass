@@ -2,8 +2,12 @@
 const request = require('supertest');
 const mongoose = require('mongoose');
 const express = require('express');
+const dotenv = require('dotenv');
 const userRoutes = require('../routes/userRoutes');
 const User = require('../models/User');
+
+// Load environment variables from .env file
+dotenv.config();
 
 // Create an Express app for testing
 const app = express();
@@ -16,7 +20,7 @@ describe('GET /users/:id', () => {
 
   // Connect to a test database before running tests
   beforeAll(async () => {
-    const url = `mongodb://127.0.0.1/testdb`;
+    const url = process.env.MONGO_URI_TEST || `mongodb://127.0.0.1/testdb`;
     await mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
   });
 
