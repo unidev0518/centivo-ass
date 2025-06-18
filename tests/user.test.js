@@ -20,7 +20,7 @@ describe('GET /users/:id', () => {
 
   // Connect to a test database before running tests
   beforeAll(async () => {
-    const url = process.env.MONGO_URI_TEST || `mongodb://127.0.0.1/testdb`;
+    const url = process.env.MONGO_URI || `mongodb://127.0.0.1/testdb`;
     await mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true });
   });
 
